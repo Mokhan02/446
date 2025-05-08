@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import subprocess
 import os
+import psutil  # Make sure to run: pip install psutil
 
 # List of apps and their default DSCP values
 priority_apps = {
@@ -11,20 +12,32 @@ priority_apps = {
     "steam.exe": 10
 }
 
+# Find full path of a running process by name
+def find_exe_path_by_name(app_name):
+    for proc in psutil.process_iter(['name', 'exe']):
+        if proc.info['name'] and proc.info['name'].lower() == app_name.lower():
+            return proc.info['exe']
+    return None
+
 # Apply QoS policy
 def apply_qos(app):
     dscp = priority_apps[app]
     try:
-        # This gets the full path of the running process (if needed, can be improved)
-        exe_path = f"C:\\Program Files\\{app.split('.')[0].capitalize()}\\{app}"  # change as needed
+        exe_path = find_exe_path_by_name(app)
+        if not exe_path:
+            messagebox.showerror("Error", f"Could not find a running process for {app}.\nPlease make sure it's open.")
+            return
+
         subprocess.run([
             "powershell",
             f"New-NetQosPolicy -Name Auto_{app} "
             f"-AppPathNameMatchCondition '{exe_path}' "
             f"-IPProtocolMatchCondition Both "
-            f"-DSCPAction {dscp}"
+            f"-DSCPAction {dscp} "
+            f"-NetworkProfile All"
         ], shell=True)
-        messagebox.showinfo("Success", f"QoS policy applied to {app} (DSCP {dscp})")
+
+        messagebox.showinfo("Success", f"QoS policy applied to {app} at:\n{exe_path}")
     except Exception as e:
         messagebox.showerror("Error", str(e))
 
