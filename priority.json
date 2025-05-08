@@ -1,77 +1,52 @@
 {
-    "priority_levels": [
-      {
-        "name": "Ultra High",
-        "bandwidth_percent": 40,
-        "applications": [
-          {
-            "name": "Zoom",
-            "ports": [
-              {"start": 3478, "end": 3478, "protocol": "udp"}
-            ]
-          },
-          {
-            "name": "Discord Voice",
-            "ports": [
-              {"start": 3478, "end": 3478, "protocol": "udp"}
-            ]
-          }
-        ]
-      },
-      {
-        "name": "High",
-        "bandwidth_percent": 30,
-        "applications": [
-          {
-            "name": "Steam",
-            "ports": [
-              {"start": 27015, "end": 27030, "protocol": "udp"}
-            ]
-          },
-          {
-            "name": "Valorant",
-            "ports": [
-              {"start": 7000, "end": 7000, "protocol": "udp"}
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Medium",
-        "bandwidth_percent": 20,
-        "applications": [
-          {
-            "name": "Netflix",
-            "ports": [
-              {"start": 16384, "end": 32767, "protocol": "udp"}
-            ]
-          },
-          {
-            "name": "YouTube",
-            "ports": [
-              {"start": 16384, "end": 32767, "protocol": "udp"}
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Low",
-        "bandwidth_percent": 10,
-        "applications": [
-          {
-            "name": "Web Browsing",
-            "ports": [
-              {"start": 80, "end": 80, "protocol": "tcp"},
-              {"start": 443, "end": 443, "protocol": "tcp"}
-            ]
-          },
-          {
-            "name": "File Transfer",
-            "ports": [
-              {"start": 20, "end": 21, "protocol": "tcp"}
-            ]
-          }
-        ]
-      }
-    ]
-  } 
+  "priority_levels": [
+    {
+      "name": "Ultra High",
+      "bandwidth_percent": 40,
+      "applications": [
+        {
+          "name": "Zoom",
+          "ports": [
+            { "start": 3478, "end": 3478, "protocol": "udp" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "High",
+      "bandwidth_percent": 30,
+      "applications": [
+        {
+          "name": "Discord Voice",
+          "ports": [
+            { "start": 3478, "end": 3478, "protocol": "udp" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Medium",
+      "bandwidth_percent": 20,
+      "applications": [
+        {
+          "name": "Valorant",
+          "ports": [
+            { "start": 7000, "end": 7000, "protocol": "udp" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Low",
+      "bandwidth_percent": 10,
+      "applications": [
+        {
+          "name": "Steam",
+          "ports": [
+            { "start": 27015, "end": 27030, "protocol": "udp" }
+          ]
+        }
+      ]
+    }
+  ]
+}
